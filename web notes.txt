@@ -1,0 +1,84 @@
+content area - area that contains the box content
+box properties - used to add white space and a border around the content
+
+margin
+	border
+		padding
+			content
+
+padding properties - control internal white space around the contents of an element
+padding: top right bottom left; 
+
+em (em values)
+px (pixels)
+mm (millimeter)
+cm (centimeter)
+in (inches)
+% (percent of a container element)
+
+
+border-style:
+-solid
+-double
+-dotted
+-dashed
+-groove
+-ridge
+-inset
+-outset
+-none (default)
+
+border-top-style
+border-right-style
+border-bottom-style
+border-left-style
+border-style (shorthand property)
+
+
+-thin
+-medium
+-thick
+
+border-top-width
+border-right-width
+border-bottom-width
+border-left-width
+border-width (shorthand property)
+
+
+-background-image
+-background-color
+-background-position
+-background-repeat
+-background-attachment
+-background
+
+background: image color position repeat attachment
+
+The order of precedence (highest to lowest):
+1. User-defined styles
+2. Inline styles
+3. Embedded style sheet styles
+4. External style sheet styles
+5. The borwser's style sheet (the browser's default styles)
+
+External style sheet
+<link rel="stylesheet" href="filename.css" type="text/css" />
+
+
+vertical-align
+-top - the top of the image is aligned with the text
+-middle - the image is aligned vertically centered with the text
+-bottom - the bottom of the image is aligned with the text
+
+
+percent% - raises or lowers an element by a percent of the line-height property, specified by percent; negative values are allowed.
+baseline - the default value; places the element on the baseling (the bottom) of the parent element
+bottom - aligns the bottom of the element with the lowest element on the line
+length - raises or lowers an element by length; negative values are allowed
+middle - places the element in the middle of the parent element
+sub - subscript
+super - superscript
+
+
+list-style: stylevalue url(imagename) positionvalue;

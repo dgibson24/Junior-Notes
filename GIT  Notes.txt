@@ -1,0 +1,95 @@
+git remotels 				lists files in a directory
+mkdir [name] 				makes a directory with the name specified
+cd [name] 				changes to that specified directory
+
+
+
+--------Initial Configuration after installing Git---------------
+
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+	
+	
+	
+	
+----------Local Repos - Stage 1-----------------------
+
+git init 				makes the current folder into a repo
+git init [name] 			makes a new folder and initialize it as a repo
+
+git status 	  			shows the status of files in our repo
+
+git add [filename] 			adds a single file to the staging area
+git add . 				adds all modified and new files to the staging area
+
+git commit 				commits changes to the repo. opens text editor for message
+git commit -m "message" 		commits changes to the repo with short message
+
+git log 				shows the commit history
+git log --oneline			shows commits using one line each
+
+git revert HEAD				go back one commit - keeps history
+git reset --hard hash			use rarely - goes back but deletes history
+
+
+
+
+
+------------ Remote Repos - Stage 2----------------------------
+
+Put it Online:
+
+Create new repo online at github.com - need to make an account first!
+
+					
+git remote add origin <address> 			origin is the name everyone uses - could be anything, but use origin!
+							use the https address, not SSH
+														
+git remote						Shows you the remotes that are configured													
+																							
+git push -u origin main					push TO the origin (on the web) from the main branch (on your PC - local)
+								-u is only used the first time!
+								-u option automatically sets that upstream for you, linking your repo to the central one.
+								That way, in the future, Git "knows" where you want to push to and where you want to pull from)
+
+git push 						once you have pushed with -u once, git remembers and you can just use this instead.
+
+git status						now shows if we are up to date
+								look at github repo too
+
+	--Now the 'everyday' workflow is:
+		Add files and make edits
+		git add .  
+		git commit 
+		git push
+			
+
+
+
+			
+-------------  Cloning an existing Repo -----------------------
+
+git clone [address]				copies a remote repo to the current folder
+						automatically sets you up to push - no need to configure the remote
+								
+git fetch					gets changes from the remote repo - does not merge them
+
+git pull					pulls and merges changes from the remote repo
+
+
+
+-------------  Branch and Merge -----------------------
+
+git branch					shows branches and which one is currently active
+
+git branch <name>				creates a new branch called <name>
+
+git checout <name>				switches to branch <name>
+
+git merge <name>				merges the <name> branch into the active branch
+
+git push --set-upstream origin <name>		adds your branch to your remote repo
+
+git branch -d <name>				delete branch <name>
+								
+git merge --abort				abort a merge if it didn't complete

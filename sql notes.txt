@@ -1,0 +1,261 @@
+First Normal Form (1NF) - Table faithfully represents a relation and has no repeating groups.
+Second Normal Form (2NF) - No non-prime attribute int he table is functionally dependent on a proper subset of a candidate key.
+Third Normal Form (3NF) - Every non-prime attribute is non-transitively dependent on every candidate key in the table.
+Fourth Normal Form ($NF) - Every non-trivial multivalues dependency in the table is a dependency on a superkey.
+Fifth Normal Form (5NF) - Every non-trivial join dependency in the table is implied by the superkeys of the table.
+
+
+When writing SQL code, it is NOT recommended to follow the ANSI SQL standard so the work can be ported between databases
+SQL - Structured Query Language
+SQL Keywords are NOT case sensitive
+A RESULT-SET represents he data extracted from a query
+DBMS - Database Management System
+ALIGN is NOT a query language keyword
+UNDER is NOT a SQL Keyword
+A TABLE in database terms, is a collection of closely related columns
+Miniature Database is NOT a database type
+ORDER BY is the syntax for sorting data after a query runs
+GROUP BY is used when aggregating data together
+TOTAL is NOT an aggregate function in SQL
+SELECT x    FROM table    GROUP BY x - is the same as SELECT DISTINCT x    FROM table
+The CREATE keyword is used to build a database, table, view, and index
+It is not required for every database table to have a PRIMARY KEY
+SELECT name AS THE_DESIRED_NAME    FROM table - creates an alias for the name field
+The DESC keyword sorts data from largest to smallest in a query
+The INSERT keyword is used to add data to a table
+The UPDATE keyword is used to modift data within a table
+WHERE a BETWEEN x AND y -- is the same as -- a>(x-1) AND a<(y+1)
+SELECT name, MIN(a)    FROM table -- is not enough information to determine where name is pulled from
+No matter how many fields are in a SELECT statement, it is all in ONE ROW
+In a query with a GROUP BY, HAVING and WHERE produce the same result
+When using a CREATE TABLE, STRING is not given as an option to represent the datatype of a field
+INNER JOIN produces an INTERSECTION of a dataset
+The maximum number of table that can be joined together in a single SQL statement is DATABASE DEPENDENT
+When using an INNER JOIN on two table, the result is every row where the key used in the join is in both tables
+INDEXES are used to make database queries more efficient and quicker
+A primary key MUST be unique
+A primary key CAN be made of multiple columns
+UPDATE is used to modify a group
+The ALTER TABLE keywords are used to add, modify, or drop/delete columns in a database table
+DELETE and DROP BOTH remove data from the table, DROP removes the schema, table, and constraints
+DDL - Data Definition Language
+DDL changes the structure of the database, DML manages the data in the database
+PRODUCT is NOT an aggregate function in SQL
+TRUNCATE and DELETE both remove all data, DELETE can be use din conjunction with a WHERE to only delete specific data
+A foreign key can NOT be made up of multiple columns
+WHERE x LIKE "Y%" -- gets every x, that starts with 'Y'
+VARCHAR is preferable as a data type a majority of the time because it saves space by not allocating space that may never be used
+Given table a and table b, a foreign key would be table (b.AN_IDENTICAL_COLUMN) (b.numberOfItemsBought)
+A LEFT OUTER JOIN would make the left column show up as non-null
+If you are looking for someone with one item -- SELECT lastName, COUNT(numBought)    FROM x INNER JOIN yONx.xID=y.yID GROUP BY x.ID
+Referential integrity can NOT use STRINGs
+36/50-ish - 36/50-ish - 36/50-ish - 36/50-ish - 36/50-ish - 36/50-ish -- (21-22)
+
+
+
+IF A TRUE OR FALSE QUESTION REPEATS, GUESS TRUE FOR ONE, AND FALSE FOR THE OTHER
+__________________________________________________________________________________________________________________________________________________________________________________
+RDBMS - relation database management systems
+Transact SQL - T-SQL
+
+every row is an instance
+columns hold the values for each attribute of the instance
+a field is the intersection of a row and a column
+
+4 types of commands - deals with transactions and locking
+
+data manipulation language (DML)
+data definition language (DDL)
+transaction control language (TCL)
+data control language (DCL)
+
+four standard database isolation levels are
+read uncommited
+read commited
+serializable
+repeatable read
+
+Arithmetic + - * /
+Concatenation +
+Comparison <, <=, >, >=, <>
+is (not) null, like, (not) in
+(not) between
+not
+and
+or
+
+
+Order by clause
+	The default sort order is ascending
+	Numeric values are displayed lowest to highest
+	Date values are displayed with the earliest value first
+	Character values are displayed in alphabetical order
+	NULL values are displayed last in ascending order and first in descending order
+	NULLS FIRST specifies that NULL values should be returned before non-NULL values
+	NULLS LAST specifies that NULL values should be returned after non-NULL values
+
+Three types of join
+	-inner
+	-outer
+		-left outer - everything selected from the left table, even if there are no matches
+		-right outer - everything selected from the right table, even if there are no matches
+		-full outer - everything selected from both tables, even if there are no matches
+	-cross
+
+
+--SUBQUERIES
+
+	--Result of one query used in another query
+	--Work from inside-out (there are expections)
+	--Order Query and Inner Query
+
+	  --Subqueries can be
+		--simple
+		--correlated
+	  --Subqueries can return:
+		--scalar
+		--multi-valued
+		--table-valued
+
+	  --Simple subqqueries return a single result set used by the outer query:
+		--Single Value, List of values from a single column or T/F
+	  --Correlated Subquery
+		--Depends on a value from the outer query
+
+--Subqueries versus Joins
+	--Most can be written either way
+	  --Joins perform faster (according to some)
+	  --Subqueries are easier to read (according to some)
+	--MS says no difference if done properly
+	  --subqueries that check for existence of date - USE JOIN
+	    --indexes make them faster in that case
+	--Get it done - optimize it later if needed
+
+--Scalar Subquery - Returns one value
+--Multivalued Subquery - 
+
+--Single value vs.  Multi value 
+	--Notice '=' vs. 'in'
+ 
+ 
+	--Common Subquery formats:
+ 
+		--WHERE expression [NOT] IN (subquery)
+ 
+		--WHERE expression comparison_operator [ANY | ALL] (subquery)
+ 
+		--WHERE [NOT] EXISTS (subquery)
+
+--Correlated
+	--Tough
+	--Learn to recognize
+	
+	--Which sales person has an order with totaldue > $150K?
+	
+	--Using Join
+	SELECT DISTINCT p.BusinessEntityId, p.FirstName + ' ' + p.LastName Name
+	FROM Person.Person p
+	JOIN Sales.SalesOrderHeader s
+	ON p.BusinessEntityID = s.SalesPersonID
+	WHERE s.TotalDue > 150000
+	
+	--Using Correlated Subquery (notice alias in out query)
+	SELECT p.BusinessEntityID, p.FirstName + ' ' + p.LastName NAME
+	FROM Person.Person p
+	WHERE EXISTS
+		(SELECT s.SalesPersonID
+		 FROM Sales.SalesOrderHeader s
+		 WHERE TotalDue > 150000
+		 AND p.BusinessEntityID = s.SalesPersonID)
+	
+	--Notice outer table referenced in inner query	 
+	--Inner query can use * since we are only looking for existence
+	--Inner query runs repeatedly for each outer result
+
+
+
+
+--Common Subquery Formats:
+	--WHERE expression [NOT] IN (subquery)
+	--WHERE expression comparison_operator [ANY/ALL] (subquery)
+	--WHERE [NOT] EXISTS (subquery)
+
+WHEN WERE USING SOMETHING FORM THE OUTSIDE QUERY IN THE INNER QUERY, IT RUNS DIFFERENTLY
+IT DOESNT DO THE SUBQUERY THEN THE OUTSIDE QUERY
+
+WHAT HAPPENS IS THE FIRST LINE OF THE OUTSIDE QUERY RUNS 
+THEN IT DOES THE INSIDE QUERY TO SEE IF IT MATCHES
+IT GOES AND DOES THE NEXT LINE OF THE OUTSIDE QUERY 
+DOES THE INSIDE QUERY TO SEE IF IT MATCHES
+THIRD LINE OUTSIDE
+LOOKS FOR MATCH
+
+
+
+
+The SQL keyword that enables you to be able to change columns within a table is ALTER
+A table column within common database terms is also considered as a FIELD
+ECL - Emitter-Coupled Logic
+Each table within a database must have A UNIQUE NAME
+A primary key much contain A UNIQUE VALUE FOR EACH ROW OF DATA, and CANNOT CONTAIN NULL VALUES
+A foreign key links between a field in one table to a field in another table.
+TINYTEXT is NOT a character string data type in SQL Server
+DATEOFFSET is NOT a Date and Time data type within SQL Server
+VARBINARY is NOT a numeric data type within SQL Server
+DOMAIN - the possible value of an attribute, i.e. column
+Primary keys, defualt values, and data types should be considered when making a table within SQL
+A characteristic of an RDBMS is "tables are linked by common data known as keys"
+DATA SET is an item that can store data from various databases to be used as a fast table in memory to read and write data from
+A database schema defines the tables, field in each table, and relationships between fields and tables
+GUID - Global Unique Identifier
+DAL(Data Abstraction Language) is NOT a category of SQL commands
+
+DAC(Data Administration Commands) is a category of SQL commands
+TCC(Transactional Control Commands) is a category of SQL commands
+DQL(Data Query Language) is a category of SQL commands
+Both table need a primary key, and the foregein key needs to be placed in the table that is referencing the other table when representing a 1:M relationship in a relational database design
+Primary key constraints ensure ENTITY INTEGRITY
+ATTRIBUTE INTEGRITY is NOT a category of data integrity
+The DROP command is used to either frop a database or table from the server
+CREATE TABLE orders(orderID INT NOT NULL PRIMARY KEY) creates a table names "Orders" with a primary key names "orderID"
+PRIMARY KEY (Name, Address) defines a COMPOSITE KEY
+RDBMS is the basis for SQL, as well as all modern database systems except MongoDB
+INSERT is an example of a DML command
+A stored program that is attached to a table or view is called a STORED PROCEDURE
+Permissions is NOT removed by the DROP TABLE in SQL Server
+Bitwise constraints is inconsistent with Domain information
+Aggregate functions can be sed as expressions in the select list of a SELECT statement
+Two common wildcard characters within SQL Percent Sign (%), Underscore (_)
+SQL query and modification commands make up a DML
+The language available in SQL Server that adds programming constructs to the SQL Language is known as (TSQL) TRANSACT-SQL
+In MS SQL, the parameter added to a field in order to auto increment that field is IDENTITY
+The identifier of the entity becomes the PRIMARY KEY of the corresponding table
+A table's Permissions are a set of defined levels of access to a securable and area pplied individually or collectively to a securable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

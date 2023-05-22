@@ -1,0 +1,30 @@
+lbl - label
+txt - textbox
+btn - button
+rad - radio
+chk - checkbox
+pic - picturebox
+
+referenceType[] variableName = new referenceType[number of values in the array];
+
+( return type ).Parse( ( ( something ).Text ) );
+if ( ( return type ).TryParse( ( something ).Text, out ( matching_variable ) ) )
+try
+{
+	(code)
+}
+catch
+{
+	(error message)
+}
+MessageBox.Show("");
+if (radRed1.Checked)
+this.BackColor = Color.____
+System.Drawing.Color (variable_name) = Color.(color_name)
+(variable_name).ToString(); // for ints
+(variable_name)/ToString("n1"); // for doubles
+
+n for the number of decimal places (n3 = thousandths)
+e for scientific notation (if your answer was .0712, it would be 7.12 x 10^-2)
+c for currency (if your answer was 7.367, it would be $7.37)
+p for percentages (if your answer is .06, it would be 6%)

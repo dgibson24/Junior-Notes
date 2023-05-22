@@ -1,0 +1,21 @@
+github - dgibson24    captial, full, 1
+greenfoot - Coder12343521      capital, half, 1
+
+
+
+git add .
+git commit -m "NAME OF UPDATE"
+git push
+
+
+
+a few years of experience, can lead to working at apple, making well over six figures a year
+database programming, database (something), and c sharp, is 7 credit hours, 
+
+2 years at northwest state allows plenty more opportunities for a programmer
+its possible to get a job without this but unlikely to pay well/have good conditions
+HR is who chooses who to go to interviews at companies, HR looks for degrees before your specifics get looked into
+
+if you take all ccp for lab and some acedemics can cost someone very little to go to college
+can take off 2 semesters from college plan, just for doing all of this ccp 
+can cost a downwards of 0 dollars and an upwards of ~$200
